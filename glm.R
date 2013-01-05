@@ -38,33 +38,31 @@ err2 <- mean(abs(pr2-sa))
 # variables i fem una prediccio.
 #
 
-#require(FSelector)
-#require(mlbench)
-#require(MASS)
+require(FSelector)
+require(mlbench)
+require(MASS)
 
-#Preparing data frame
-#x <- cbind(  df$Num, df$Career, df$Gender, df$Age, df$Studying, df$Contract,
-#             df$Firmtype, df$Accgrade, df$Grade, df$Startwork, df$Image, df$Exp.gene, 
-#             df$Exp.spec, df$Qual.gen, df$Qual.spec, df$Value, df$Satisfaction)
+# Preparing data frame
+x <- cbind(ds$X39, ds$State.gov, ds$X77516, ds$Bachelors, ds$X13, ds$Never.married, ds$Adm.clerical,
+           ds$Not.in.family, ds$White, ds$Male, df$X2174, ds$X0, df$X40, ds$United.States)
 
-#y <- cbind(df$Salary)
+y <- cbind(df$X..50K)
 
 # The predictors are centered and scaled:
-#x <- as.data.frame(scale(x))
+x <- as.data.frame(scale(x))
 
 # Form final data frame
-#fullset.formula <- as.simple.formula(colnames(x), "Target")
-#dataforFSS <- cbind (x,y)
-#colnames(dataforFSS)[18] <- "Target"
+fullset.formula <- as.simple.formula(colnames(x), "Target")
+dataforFSS <- cbind (x,y)
+colnames(dataforFSS)[15] <- "Target"
 
 # Linear Regression
-#LinearRegression <- glm (Target~., family = gaussian, data = dataforFSS)
-#subset.LinearRegression.formula <- step(LinearRegression)$formula
+LinearRegression <- glm (Target~., family = gaussian, data = dataforFSS)
+subset.LinearRegression.formula <- step(LinearRegression)$formula
 
 # Showing filtered formula to show most significant dependencies
-# Target ~ V1 + V3 + V6 + V7 + V8 + V14 + V16
-# Salary ~ Gender + Age + Contract + Image + Exp.spec + Qual.gen + Value + Satisfaction
-#print(subset.LinearRegression.formula)
+# Target ~ V1 + V2 + V3 + V4 + V5 + V6 + V7 + V8 + V9 + V10 + V11 + V12 + V13
+print(subset.LinearRegression.formula)
 
 
 # Construim un model amb les variables rellevants.
