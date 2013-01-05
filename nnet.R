@@ -10,7 +10,7 @@ library(nnet)
 neural.nnAll <- nnet(ds$X..50K
                 ~ ds$X39 + ds$State.gov + ds$X77516 + ds$Bachelors + ds$X13 + ds$Never.married + ds$Adm.clerical
                 + ds$Not.in.family + ds$White + ds$Male + ds$X2174 + ds$X0 + ds$X40 + ds$United.States
-                , data=ds,entropy=T,size=3,decay=0,maxit=2000,trace=T)
+                , data=ds,size=3,decay=0,maxit=2000,trace=T)
 
 #yhat <- as.numeric(predict(nn1,type='class'))
 
