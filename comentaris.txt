@@ -1,0 +1,6 @@
+- regressio logistica (must)
+
+- Passar de continuous a categorica establing intervals factor/levels.
+Llavors podem usar SVM perque binaritza (auto). Xarxa neuronal no.
+
+- Para usar red neuronal RBF o MLP(nnet) o bien LDA/QDA, binarizar categoricas para continuas 0001, 0010...
