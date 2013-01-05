@@ -5,6 +5,9 @@
 library(MASS)
 library(nnet)
 
+ds <- df
+ds$X..50K <- factor(ds$X..50K)
+
 # Part 1: Fem servir totes les variables d'entrada
 
 set.seed(3)
