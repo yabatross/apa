@@ -60,7 +60,7 @@ colnames(dataforFSS)[15] <- "Target"
 LinearRegression <- glm (Target~., family = gaussian, data = dataforFSS)
 subset.LinearRegression.formula <- step(LinearRegression)$formula
 
-# Showing filtered formula to show most significant dependencies
+# Aqui obtenim la formula filtrada amb les entrades que millor expliquen les sortides
 # Target ~ V1 + V2 + V3 + V4 + V5 + V6 + V7 + V8 + V9 + V10 + V11 + V12 + V13
 print(subset.LinearRegression.formula)
 
