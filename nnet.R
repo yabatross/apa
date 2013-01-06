@@ -5,11 +5,13 @@
 library(MASS)
 library(nnet)
 
+ds <- df
+ds$X..50K <- factor(ds$X..50K)
+
 # Fixem una llavor aleatoria per obtenir sempre el mateix resultat
 set.seed(3)
 
 # Part 1: Fem servir totes les variables d'entrada
-
 neural.maxHiddenUnits <- 10
 
 neural.netHitsAll <- seq(from=1, to=neural.maxHiddenUnits)
