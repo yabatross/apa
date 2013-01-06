@@ -35,6 +35,7 @@ for (i in 1:neural.maxHiddenUnits)
 }
 
 # Resultat obtingut usant totes les variables d'entrada
+# Probabilitat d'encert ~76%
 neural.netHitsAll
 
 # Part 2: Fem servir nomes les variables que millor expliquen el resultat
@@ -57,5 +58,6 @@ for (i in 1:neural.maxHiddenUnits)
 }
 
 # Resultat obtingut usant nomes les variables que millor expliquen el resultat
+# Probabilitat d'encert ~79% amb 9 unitats ocultes
 neural.netHitsRelevant
 
