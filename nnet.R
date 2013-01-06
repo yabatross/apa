@@ -5,9 +5,10 @@
 library(MASS)
 library(nnet)
 
-# Part 1: Fem servir totes les variables d'entrada
-
+# Fixem una llavor aleatoria per obtenir sempre el mateix resultat
 set.seed(3)
+
+# Part 1: Fem servir totes les variables d'entrada
 
 neural.maxHiddenUnits <- 10
 
