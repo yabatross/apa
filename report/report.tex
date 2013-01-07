@@ -8,6 +8,18 @@
 \usepackage{amsmath}
 \usepackage{parskip}
 \usepackage{enumitem} % para poder empezar con 0 el enumerate
+\usepackage{soul}
+
+\hypersetup{
+	pdftitle={APA - Practical Work Report},
+	colorlinks=true, % Use colours instead of boxes.
+	urlcolor=blue
+}
+
+\newcommand\ms[1]{\texttt{#1}}
+\newcommand\R[1]{\texttt{#1}}
+\soulregister{\ms}{1}
+\soulregister{\R}{1}
 
 \begin{document}
 \thispagestyle{empty}
@@ -48,16 +60,16 @@
 \setcounter{page}{1}
 \section{Description of the problem and available data}
 
-The problem consists in creating a model that tells whether some individuals get an income superior to 50K\$ per year. Data for training and testing has been obtained from \url{http://archive.ics.uci.edu/ml/datasets/Census+Income}.
+The problem consists in creating a model that predicts whether a given individual makes \$50K or more per year. Data for training and testing has been obtained from \url{http://archive.ics.uci.edu/ml/datasets/Census+Income}.
 
-Each input on the data set consists on different indicators like age, workclass, education, etc. about an indivual. The format is clearly described on the dataset information files and on the website itself.
+Each input on the data set consists on different indicators like age, workclass, education, etc. about an indivual. The format is clearly described in the dataset information files (\ms{data/adult.names}) and on the website itself.
 
-The goal is to classify a given individual binarily, giving false if he/she gets less or equal than 50K\$ a year or true otherwise.
+The goal is to classify a given individual binarily, giving false if he/she gets less than \$50K a year or true otherwise.
 
 \section{Data pre-processing}
 
-Our dataset comes from a discrete census information table, so no data is get from continuous/noisy sources such as image, sound or video. Therefore, we don't need any special pre-processing on the input. In addition, 
-we have no missing values so each input row contains exactly all of its fields.
+Our dataset comes from a discrete census information table, meaning that no values come from continuous/noisy sources such as image, sound or video. \st{Therefore, we don't need any special pre-processing on the input. In addition, 
+we have no missing values so each input row contains exactly all of its fields.} \hl{As part of the pre-processing, we convert categorial fields such as race and sex to numerical values, since most of the classification models we use require that values be in that format. Some of the models expect the target variable to be a \ms{factor}, in which case we use the \R{as.factor} function on the target.}
 
 \section{Data Exploration}
 
@@ -71,6 +83,10 @@ Data exploration is not needed in this particular problem.
     
     \subsection{MLP Neural Network hidden units analysis}
     TODO
+    
+    \subsection{Logistic Regression}    
+    
+    \subsection{SVM}
 
 \section{Modeling Methods}
 
@@ -78,12 +94,16 @@ Data exploration is not needed in this particular problem.
     Both Linear and Quadratic Discriminant Analysis models are validated using
     half of the samples of the original dataset. The half of the data used for training (model creation) is composed by
     randomly selected samples. The second half is composed by the samples not in the training set and it's called the 
-    testing set. Bot Linear and Quadratic models are analyzed and validated predicting the learning dataset and the test
+    testing set. Both Linear and Quadratic models are analyzed and validated predicting the learning dataset and the test
     dataset. Regularized models are finally obtained using Leave-One-Out Cross Validation, giving place to more robust
     and reliable classifiers.
     
     \subsection{MLP Neural Network}
     TODO
+    
+    \subsection{Logistic Regression}
+    
+    \subsection{SVM}
 
 \section{Results}
 
@@ -100,10 +120,14 @@ Data exploration is not needed in this particular problem.
     \item QDA - True accuracy using testing set: ~68\%
     \item QDA - Regularized (LOOCV) model: ~82\%
     \end{itemize}
-    As we can see, the quadratic methods a fairly better resulst compared to the linear ones for our problem.
+    As we can see, the quadratic methods a fairly better results compared to the linear ones for our problem.
     
     \subsection{MLP Neural Network}
     TODO
+    
+    \subsection{Logistic Regression}
+    
+    \subsection{SVM}
 
 \section{Method Comparison}
 
