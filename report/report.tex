@@ -1,0 +1,114 @@
+\documentclass[english]{scrartcl}
+\usepackage{babel}
+\usepackage[margin=1.1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{bm}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{enumitem} % para poder empezar con 0 el enumerate
+
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+
+\vspace*{\fill}
+
+{\bf\LARGE APA - Practical Work Report}
+\par \vspace{6mm}
+{\LARGE FIB - 2012-2013 Q1}
+
+\par 
+\par\vspace{3mm}
+
+{\bf 
+    Alejandro Fernández Suárez\\
+    Marc Sunet Pérez
+}
+
+\par\vspace{5mm}
+{\bf\LARGE Census Income Classification}
+\vspace{3mm}
+
+\vspace*{\fill}
+
+\end{center}
+
+\newpage
+
+\vspace*\fill
+
+\thispagestyle{empty}
+\tableofcontents
+
+\vspace*\fill
+
+\newpage
+\setcounter{page}{1}
+\section{Description of the problem and available data}
+
+The problem consists in creating a model that tells whether some individuals get an income superior to 50K\$ per year. Data for training and testing has been obtained from \url{http://archive.ics.uci.edu/ml/datasets/Census+Income}.
+
+Each input on the data set consists on different indicators like age, workclass, education, etc. about an indivual. The format is clearly described on the dataset information files and on the website itself.
+
+The goal is to classify a given individual binarily, giving false if he/she gets less or equal than 50K\$ a year or true otherwise.
+
+\section{Data pre-processing}
+
+Our dataset comes from a discrete census information table, so no data is get from continuous/noisy sources such as image, sound or video. Therefore, we don't need any special pre-processing on the input. In addition, 
+we have no missing values so each input row contains exactly all of its fields.
+
+\section{Data Exploration}
+
+Data exploration is not needed in this particular problem.
+
+\section{Validation Protocol}
+
+    \subsection{Regularization and dataset partitioning for LDA and QDA}
+    As we'll see in section \ref{sec:methods:ldaqda}, we use Leave-One-Out Cross Validation to get the best linear and quadratic classification models we 
+    can. The data set is partitioned in learning and testing subsets to check the accuracy of the methods without using LOOCV.
+    
+    \subsection{MLP Neural Network hidden units analysis}
+    TODO
+
+\section{Modeling Methods}
+
+    \subsection{Linear and Quadratic Classification Models}\label{sec:methods:ldaqda}
+    Both Linear and Quadratic Discriminant Analysis models are validated using
+    half of the samples of the original dataset. The half of the data used for training (model creation) is composed by
+    randomly selected samples. The second half is composed by the samples not in the training set and it's called the 
+    testing set. Bot Linear and Quadratic models are analyzed and validated predicting the learning dataset and the test
+    dataset. Regularized models are finally obtained using Leave-One-Out Cross Validation, giving place to more robust
+    and reliable classifiers.
+    
+    \subsection{MLP Neural Network}
+    TODO
+
+\section{Results}
+
+    \subsection{Linear and Quadratic Classification Models}
+    Given the nature of the problem, linear and quadratic classification models give good enough results because the influence
+    of each input parameter is not bound to the values of the rest of parameters. Since there are many different input parameters,
+    linear and quadratic models work good at balancing the weight of each input on the final results. This is the accuracy
+    obtained for each model and testing set:
+    \begin{itemize}
+    \item LDA - Resubstitution of the learning data set: ~76\%
+    \item LDA - True accuracy using testing set: ~58\%
+    \item LDA - Regularized (LOOCV) model: ~77\%
+    \item QDA - Resubstitution of the learning data set: ~81\%
+    \item QDA - True accuracy using testing set: ~68\%
+    \item QDA - Regularized (LOOCV) model: ~82\%
+    \end{itemize}
+    As we can see, the quadratic methods a fairly better resulst compared to the linear ones for our problem.
+    
+    \subsection{MLP Neural Network}
+    TODO
+
+\section{Method Comparison}
+
+\section{Final Model and Generalisation Error}
+
+\section{Conclusion}
+
+\end{document}
