@@ -69,7 +69,7 @@ The goal is to classify a given individual binarily, giving false if he/she gets
 \section{Data pre-processing}
 
 Our dataset comes from a discrete census information table, meaning that no values come from continuous/noisy sources such as image, sound or video. \st{Therefore, we don't need any special pre-processing on the input. In addition, 
-we have no missing values so each input row contains exactly all of its fields.} \hl{As part of the pre-processing, we convert categorial fields such as race and sex to numerical values, since most of the classification models we use require that values be in that format. Some of the models expect the target variable to be a \ms{factor}, in which case we use the \R{as.factor} function on the target.}
+we have no missing values so each input row contains exactly all of its fields.} \hl{As part of the pre-processing, we convert categorial fields such as race and sex to numerical values, since the classification models that we use require that values be in that format. The target variable \ms{X..50K} is converted to a factor using the \R{as.factor} function.}
 
 \section{Data Exploration}
 
