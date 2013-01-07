@@ -2,10 +2,9 @@
 # GLM
 #
 
-# Preproces
 ds <- df
-ds$X..50K <- factor (ds$X..50K)
 
+tobin <- function (x) { if (x >= 0.5) return (1); return (0) }
 
 # Construim el model amb totes les variables.
 
@@ -16,7 +15,6 @@ mylogit <- glm (ds$X..50K
 
 # A continuacio fem una prediccio i mesurem l'error.
 # En les nostres proves l'error es de 0.2284495, es a dir, que el model encerta un 77% dels cops.
-
 pr <- predict(mylogit, ds, type="response")
 minus1 <- function(x) { return (x-1); }
 sa <- sapply(as.numeric(ds$X..50K), minus1)
@@ -24,8 +22,6 @@ err <- mean(abs(pr-sa))
 
 # Aqui fem el mateix, pero establim que si la prediccio es <0.5, la interpreten com un 0, i 1 d'altre manera.
 # En les nostres proves l'error es de 0.1632653, es adir, que el model encerta un 83% dels cops.
-
-tobin <- function (x) { if (x >= 0.5) return (1); return (0) }
 pr2 <- sapply(pr, tobin)
 err2 <- mean(abs(pr2-sa))
 
@@ -74,14 +70,11 @@ mylogit <- glm (ds$X..50K
 
 # A continuacio fem una prediccio i mesurem l'error.
 # En les nostres proves l'error es de 0.254356, lleugerament diferent de err1.
-
 pr3 <- predict(mylogit, ds, type="response")
 sa3 <- sapply(as.numeric(ds$X..50K), minus1)
 err3 <- mean(abs(pr3-sa3))
 
 # Aqui fem el mateix, pero establim que si la prediccio es <0.5, la interpreten com un 0, i 1 d'altre manera.
 # En les nostres proves l'error es de 0.1632653, exactament el mateix que err2.
-
-tobin <- function (x) { if (x >= 0.5) return (1); return (0) }
 pr4 <- sapply(pr3, tobin)
 err4 <- mean(abs(pr4-sa3))
