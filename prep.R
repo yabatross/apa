@@ -20,7 +20,7 @@ df$Not.in.family <- as.numeric(df$Not.in.family)
 df$White         <- as.numeric(df$White)
 df$Male          <- as.numeric(df$Male)
 df$United.States <- as.numeric(df$United.States)
-df$X..50K        <- sapply(as.character(df$X..50K), encode_salary)
+df$X..50K        <- as.factor(sapply(as.character(df$X..50K), encode_salary))
 
 # Training i test sets per cross validation
 
