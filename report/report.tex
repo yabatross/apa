@@ -60,38 +60,28 @@
 \setcounter{page}{1}
 \section{Description of the problem and available data}
 
-The problem consists in creating a model that predicts whether a given individual makes \$50K or more per year. Data for training and testing has been obtained from \url{http://archive.ics.uci.edu/ml/datasets/Census+Income}.
+The problem consists in creating a model that predicts whether a given individual makes \$50K or more a year. Training and testing data has been obtained from \url{http://archive.ics.uci.edu/ml/datasets/Census+Income}.
 
-Each input on the data set consists on different indicators like age, workclass, education, etc. about an indivual. The format is clearly described in the dataset information files (\ms{data/adult.names}) and on the website itself.
-
-The goal is to classify a given individual binarily, giving false if he/she gets less than \$50K a year or true otherwise.
+Each individual in the data set specifies a set indicators such as age, work class and education, from which the yearly income has to be predicted. Our goal is to make that prediction, to tell which variables the target variable is truly dependent on and to analyse the results. In the process, we test different machine learning algorithms and compare the quality of their outputs.
 
 \section{Data pre-processing}
 
-Our dataset comes from a discrete census information table, meaning that no values come from continuous/noisy sources such as image, sound or video. As part of the pre-processing, we convert categorial fields such as race and sex to numerical values, since the classification models that we use require that values be in that format. The target variable \ms{X..50K} is converted to a factor using the \R{as.factor} function.
+Our dataset comes from a discrete census information table, meaning that no values come from continuous/noisy sources such as image, sound or video and that therefore no tinkering has to be performed on the input values.
 
-\section{Data Exploration}
+The only transformation that we apply to the input is converting categorial fields such as race and sex to numerical values and converting the target variable to a factor. These two steps are needed by all of the classification models that we build, which is why we perform them as part of the pre-processing.
 
-Data exploration is not needed in this particular problem.
+\section{Models}
 
-\section{Validation Protocol}
+The problem at hand is a binary classification one and we have therefore chosen the models relevant to this task, namely LDA/QDA, MLP neural networks, logistic regression and SVMs.
 
-    \subsection{Regularization and dataset partitioning for LDA and QDA}
+    \subsection{LDA/QDA}
+    
+    \subsubsection{Regularization and dataset partitioning for LDA and QDA}
     As we'll see in section \ref{sec:methods:ldaqda}, we use Leave-One-Out Cross Validation to get the best linear and quadratic classification models we 
     can. The data set is partitioned in learning and testing subsets to check the accuracy of the methods without using LOOCV.
     
-    \subsection{MLP Neural Network hidden units analysis}
-    For the case of the MLP neural network, the non-linear model obtained is validated by just predicting the training set. However, for both models obtained
-    (see section \ref{sec:methods:nnet}), we analyze which is the best number of hidden units from 1 up to 10. The results obtained will be shown in detail in
-    section \ref{sec:results:nnet}.
-    
-    \subsection{Logistic Regression}    
-    
-    \subsection{SVM}
-
-\section{Modeling Methods}
-
-    \subsection{Linear and Quadratic Classification Models}\label{sec:methods:ldaqda}
+    \subsubsection{Linear and Quadratic Classification Models}
+    \label{sec:methods:ldaqda}
     Both Linear and Quadratic Discriminant Analysis models are validated using
     half of the samples of the original dataset. The half of the data used for training (model creation) is composed by
     randomly selected samples. The second half is composed by the samples not in the training set and it's called the 
@@ -99,13 +89,21 @@ Data exploration is not needed in this particular problem.
     dataset. Regularized models are finally obtained using Leave-One-Out Cross Validation, giving place to more robust
     and reliable classifiers.
     
-    \subsection{MLP Neural Network}\label{sec:methods:nnet}
-    We have build two neural network models. The first one uses all the input data, while the second uses only the most
+    \subsection{MLP Neural Network}
+    \label{sec:methods:nnet}
+    We have built two neural network models. The first one uses all the input data, while the second uses only the most
     relevant features of the input, as analyzed previously.
     
+    \subsubsection{MLP Neural Network hidden units analysis}
+    For the case of the MLP neural network, the non-linear model obtained is validated by just predicting the training set. However, for both models obtained
+    (see section \ref{sec:methods:nnet}), we analyze which is the best number of hidden units from 1 up to 10. The results obtained will be shown in detail in
+    section \ref{sec:results:nnet}.
+    
     \subsection{Logistic Regression}
+    An initial model is built from the entire data set. Next, we find out which variables the target is dependent on and we then apply k-fold cross-validation for different values of k to obtain a set of models using only the relevant variables.
     
     \subsection{SVM}
+    Different SVM models are built from the data set. First we build linear, polynomial and radial models from the entire data set, labeled \ms{Linear}, \ms{Polynomial}, and \ms{Radial}, respectively. Then we apply 3-fold cross-validation and obtain another set of models for each of the test/train combinations. These latter ones are labeled \ms{Linear-CVi}, \ms{Polynomial-CVi}, and \ms{Radial-CVi}, for $i \in \{1,2,3\}$. The models are then compared to see which one performs the best.
 
 \section{Results}
 
@@ -137,6 +135,30 @@ Data exploration is not needed in this particular problem.
     \subsection{Logistic Regression}
     
     \subsection{SVM}
+    The results obtained from the SVM models are the ones shown in table \ref{table:svm-results}.
+    
+    \begin{table}[h]
+    \centering
+    \begin{tabular}{l c}
+    \textbf{Model} & \textbf{Error rate} \\
+    Linear & 0.1848894 \\
+	Polynomial & 0.1511978 \\
+	Radial & 0.1437654 \\
+	Linear-CV1 & 0.1870278 \\
+	Polynomial-CV1 & 0.1566243 \\
+	Radial-CV1 & 0.1512806 \\
+	Linear-CV2 & 0.1851852 \\
+	Polynomial-CV2 & 0.1579141 \\
+	Radial-CV2 & 0.1517413 \\
+	Linear-CV3 & 0.1836359 \\
+	Polynomial-CV3 & 0.1612457 \\
+	Radial-CV3 & 0.1535059 \\
+    \end{tabular}
+    \caption{Results obtained from the different SVM models.}
+    \label{table:svm-results}
+    \end{table}
+    
+    As we can see, even though it seems the input is not linearly separable, it does seem to be close enough, as the differences in error rates between the linear and polynomial models are very tight. Furthermore, it is worth noting that the radial models do not present a significant improvement over the polynomial ones, so we conclude that the input data can be separated both polynomically and linearly, although not without making a few extra errors in the latter case.
 
 \section{Method Comparison}
 
