@@ -103,7 +103,7 @@ The problem at hand is a binary classification one and we have therefore chosen 
     An initial model is built from the entire data set. Next, we find out which variables the target is dependent on and we then apply k-fold cross-validation for different values of k to obtain a set of models using only the relevant variables.
     
     \subsection{SVM}
-    Different SVM models are built from the data set. First we build linear, polynomial and radial models from the entire data set, labeled \ms{Linear}, \ms{Polynomial}, and \ms{Radial}, respectively. Then we apply 3-fold cross-validation and obtain another set of models for each of the test/train combinations. These latter ones are labeled \ms{Linear-CVi}, \ms{Polynomial-CVi}, and \ms{Radial-CVi}, for $i \in \{1,2,3\}$. The models are then compared to see which one performs the best.
+    Different SVM models are built from the data set. First we build linear, polynomial and radial models from the entire data set. Then we apply 3-fold cross-validation and obtain another set of models for each of the test/train combinations. The models are then compared to see which one performs the best.
 
 \section{Results}
 
@@ -157,6 +157,8 @@ The problem at hand is a binary classification one and we have therefore chosen 
     \caption{Results obtained from the different SVM models.}
     \label{table:svm-results}
     \end{table}
+    
+    The models labeled \ms{Linear}, \ms{Polynomial} and \ms{Radial} correspond to the models obtained using leave-one-out cross-validation. The ones labeled \ms{Linear-CVi}, \ms{Polynomial-CVi} and \ms{Radial-CVi} for $i \in \{1,2,3\}$ are the ones obtained using 3-fold cross-validation.
     
     As we can see, even though it seems the input is not linearly separable, it does seem to be close enough, as the differences in error rates between the linear and polynomial models are very tight. Furthermore, it is worth noting that the radial models do not present a significant improvement over the polynomial ones, so we conclude that the input data can be separated both polynomically and linearly, although not without making a few extra errors in the latter case.
 
