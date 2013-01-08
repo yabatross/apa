@@ -68,11 +68,11 @@ Each individual in the data set specifies a set indicators such as age, work cla
 
 Our dataset comes from a discrete census information table, meaning that no values come from continuous/noisy sources such as image, sound or video and that therefore no tinkering has to be performed on the input values.
 
-The only transformation that we apply to the input is converting categorial fields such as race and sex to numerical values and converting the target variable to a factor. These two steps are needed by all of the classification models that we build, which is why we perform them as part of the pre-processing.
+The only transformation we apply to the input is the conversion of categorial fields such as race and sex to numerical values and the conversion of the target variable to a factor. These two steps are needed by all of the classification models that we build, which is why we perform them as part of the pre-processing.
 
 \section{Models}
 
-The problem at hand is a binary classification one and we have therefore chosen the models relevant to this task, namely LDA/QDA, MLP neural networks, logistic regression and SVMs.
+The problem at hand is a binary classification one and we have therefore chosen appropriate models for this task, namely LDA/QDA, MLP neural networks, logistic regression and SVMs. In the following sections we describe the procedure used to build each of the models.
 
     \subsection{LDA/QDA}
     
@@ -100,10 +100,12 @@ The problem at hand is a binary classification one and we have therefore chosen 
     section \ref{sec:results:nnet}.
     
     \subsection{Logistic Regression}
-    An initial model is built from the entire data set. Next, we find out which variables the target is dependent on and we then apply k-fold cross-validation for different values of k to obtain a set of models using only the relevant variables.
+    An initial model is built from the entire data set. We then find out which variables the target is dependent on and we build a second model using only these variables. This second model is compared against the first one to verify that the variables that have are discarded are indeed irrelevant to predict the target variable.
+    
+    Using the selected variables only, we then apply k-fold cross-validation for different values of k to obtain a set of different models, as well as leave-one-out cross-validation to obtain a last one.
     
     \subsection{SVM}
-    Different SVM models are built from the data set. First we build linear, polynomial and radial models from the entire data set. Then we apply 3-fold cross-validation and obtain another set of models for each of the test/train combinations. The models are then compared to see which one performs the best.
+    Different SVM models are built from the data set. First, we build linear, polynomial and radial models from the entire data set. Then, we apply 3-fold cross-validation and obtain another set of models for each of the test/trainining partitions. The models are then compared to see which one performs the best.
 
 \section{Results}
 
