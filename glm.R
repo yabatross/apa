@@ -78,3 +78,17 @@ err3 <- mean(abs(pr3-sa3))
 # En les nostres proves l'error es de 0.1632653, exactament el mateix que err2.
 pr4 <- sapply(pr3, tobin)
 err4 <- mean(abs(pr4-sa3))
+
+# Calculem errors amb cross validation.
+require (boot)
+
+# Error amb LOOCV
+# err_loocv <- cv.glm(ds, mylogit)
+
+# Error amb k-fold CV.
+N <- 6
+err_kcv <- rep(0,N)
+for (i in 2:N)
+{
+  err_kcv[i-1] <- cv.glm(ds, mylogit, K=i)
+}

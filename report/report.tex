@@ -135,7 +135,27 @@ The problem at hand is a binary classification one and we have therefore chosen 
     \end{itemize}
     
     \subsection{Logistic Regression}
+    Results for the logistic regression models are summarised in table \ref{table:logit-results}.
     
+    \begin{table}[h]
+    \centering
+    \begin{tabular}{l c}
+    \textbf{Model} & \textbf{Error rate} \\
+    Initial & 123 \\
+    Initial (bin) & 123 \\
+    Pruned & 123 \\
+    Pruned (bin) & 123 \\
+    2-fold & 0.2450596 \\
+    3-fold & 0.2432385 \\
+    4-fold & 0.2439326 \\
+    5-fold & 0.2438422 \\
+    6-fold & 0.2447852 \\
+    \end{tabular}
+    \caption{Results for logistic regression models.}
+    \label{table:logit-results}
+    \end{table}
+    
+        
     \subsection{SVM}
     The results obtained from the SVM models are the ones shown in table \ref{table:svm-results}.
     
