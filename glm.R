@@ -5,6 +5,7 @@
 ds <- df
 
 tobin <- function (x) { if (x >= 0.5) return (1); return (0) }
+minus1 <- function(x) { return (x-1); }
 
 # Construim el model amb totes les variables.
 
@@ -16,7 +17,6 @@ mylogit <- glm (ds$X..50K
 # A continuacio fem una prediccio i mesurem l'error.
 # En les nostres proves l'error es de 0.2284495, es a dir, que el model encerta un 77% dels cops.
 pr <- predict(mylogit, ds, type="response")
-minus1 <- function(x) { return (x-1); }
 sa <- sapply(as.numeric(ds$X..50K), minus1)
 err <- mean(abs(pr-sa))
 
