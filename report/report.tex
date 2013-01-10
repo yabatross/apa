@@ -9,6 +9,7 @@
 \usepackage{parskip}
 \usepackage{enumitem} % para poder empezar con 0 el enumerate
 \usepackage{soul}
+\usepackage{graphicx}
 
 \hypersetup{
 	pdftitle={APA - Practical Work Report},
@@ -192,6 +193,38 @@ The problem at hand is a binary classification one and we have therefore chosen 
     As we can see, even though it seems the input is not linearly separable, it does seem to be close enough, as the differences in error rates between the linear and polynomial models are very tight. Furthermore, it is worth noting that the radial models do not present a significant improvement over the polynomial ones, so we conclude that the input data can be separated both polynomically and linearly, although not without making a few extra errors in the latter case.
 
 \section{Method Comparison}
+
+As we can see in figure \ref{fig:results}, no model outbeats the others by far in terms of
+accuracy on the prediction. However, there are a few aspects to take into account when
+it comes to decide which one fits better for our problem:
+
+\begin{figure}[h!]
+ 
+  \centering
+    \includegraphics[width=1\textwidth]{results}
+   \caption{Model accuracy comparison}
+   \label{fig:results}
+\end{figure}
+
+\begin{itemize}
+\item The logistic regression is hard and expensive to validate and test in this 
+problem due to the relatively large amount of input parameters we get, even after
+filtering. This makes the models obtained by logistic regression the first ones 
+in being discarded.
+
+\item The non-linear approaches don't show any special improvement with respect
+to the linear models, so we can accept a good lineal model for simplicity.
+
+\item The leave-one-out cross validation used in LDA and QDA gives more stable
+and reliable models with respect to the ones that have been tested by just folding.
+
+\item In terms of accuracy, the best model obtained is an SVM, with an accuracy
+of 84.5 \% and it has been assessed by cross-validation.
+
+\item Although we have determined the optimum number of hidden units for the 
+MLP neural networks, they show no improvement on predictive accuracy, so we
+are very likely going to choose another approach as a final model.
+\end{itemize}
 
 \section{Final Model and Generalisation Error}
 
