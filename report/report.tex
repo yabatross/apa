@@ -112,16 +112,23 @@ The problem at hand is a binary classification one and we have therefore chosen 
     \subsection{Linear and Quadratic Classification Models}
     Given the nature of the problem, linear and quadratic classification models give good enough results because the influence
     of each input parameter is not bound to the values of the rest of parameters. Since there are many different input parameters,
-    linear and quadratic models work good at balancing the weight of each input on the final results. This is the accuracy
-    obtained for each model and testing set:
-    \begin{itemize}
-    \item LDA - Resubstitution of the learning data set: ~76\%
-    \item LDA - True accuracy using testing set: ~58\%
-    \item LDA - Regularized (LOOCV) model: ~77\%
-    \item QDA - Resubstitution of the learning data set: ~81\%
-    \item QDA - True accuracy using testing set: ~68\%
-    \item QDA - Regularized (LOOCV) model: ~82\%
-    \end{itemize}
+    linear and quadratic models work good at balancing the weight of each input on the final results. Aaccuracy rates obtained for each model and testing set are shown in table \ref{table:ldaqda-results}.
+    
+    \begin{table}[h]
+    \centering
+    \begin{tabular}{l c}
+    \textbf{Model} & \textbf{Error rate} \\
+    LDA - Resubstitution of the learning data set & ~76\% \\
+    LDA - True accuracy using testing set & ~58\% \\
+    LDA - Regularized (LOOCV) model & ~77\% \\
+    QDA - Resubstitution of the learning data set & ~81\% \\
+    QDA - True accuracy using testing set & ~68\% \\
+    QDA - Regularized (LOOCV) model & ~82\% \\
+    \end{tabular}
+    \caption{Results for LDA/QDA models.}
+    \label{table:ldaqda-results}
+    \end{table}
+    
     As we can see, the quadratic methods a fairly better results compared to the linear ones for our problem.
     
     \subsection{MLP Neural Network}\label{sec:results:nnet}
@@ -188,6 +195,16 @@ The problem at hand is a binary classification one and we have therefore chosen 
 
 \section{Final Model and Generalisation Error}
 
-\section{Conclusion}
+The \texttt{Radial-CV1} model is the best model we have obtained from the data set, which corresponds to an SVM with a radial kernel trained with 3-fold cross validation. 
+
+It is worth noting, however, that error rate of the \texttt{Radial-CV1} model is not execessively better than that of the other SVMs, or even the QDA model trained with leave-one-out cross validation. This, and the fact that the polynomial methods are quite close to the linear ones, seems to suggest that the data forms a very big circle, so big that the data is locally linear.
+
+From the training of the logistic regression models, we have learned that an individual's country of residence is not a relevant factor towards determining the individual's yearly income. To confirm this, we analyse the data set and figure out which of the given countries have individuals that earn more than \$50K a year. As it turns out, only 2 of the 42 input countries fail to satisfy this condition, suggesting that the country is indeed irrelevant, or at least neglectable.
+
+The final model is then a radial SVM model trained with 3-fold cross validation after discarding the country attribute of the input data.
+
+\section{Conclusions}
+
+A given individual's country of residence is not a relevant factor towards determining their yearly income. The given data is technically not linearly separable, but if we allow some error we can get decent linear estimates. The polynomial models do only slightly better, and the radial present a neglectable gain ($<1\%$) with respect to the polynomial ones, suggesting that the data set is locally linear.
 
 \end{document}
