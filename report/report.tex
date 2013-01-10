@@ -222,7 +222,7 @@ and reliable models with respect to the ones that have been tested by just foldi
 of 84.5 \% and it has been assessed by cross-validation.
 
 \item Although we have determined the optimum number of hidden units for the 
-MLP neural networks, they show no improvement on predictive accuracy, so we
+MLP neural networks, they show no improvement on prediction accuracy, so we
 are very likely going to choose another approach as a final model.
 \end{itemize}
 
@@ -234,7 +234,7 @@ It is worth noting, however, that error rate of the \texttt{Radial-CV1} model is
 
 From the training of the logistic regression models, we have learned that an individual's country of residence is not a relevant factor towards determining the individual's yearly income. To confirm this, we analyse the data set and figure out which of the given countries have individuals that earn more than \$50K a year. As it turns out, only 2 of the 42 input countries fail to satisfy this condition, suggesting that the country is indeed irrelevant, or at least neglectable.
 
-The final model is then a radial SVM model trained with 3-fold cross validation after discarding the country attribute of the input data.
+The final model is then a radial SVM model trained with 3-fold cross validation after discarding the country attribute of the input data. The prediction error rate given by this model is of 15\%, meaning that the model correctly predicts the target variable 85\% of the times.
 
 \section{Conclusions}
 
