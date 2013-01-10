@@ -15,13 +15,13 @@ mylogit <- glm (ds$X..50K
                 , data=ds, family="binomial")
 
 # A continuacio fem una prediccio i mesurem l'error.
-# En les nostres proves l'error es de 0.2284495, es a dir, que el model encerta un 77% dels cops.
+# err = 0.2430621
 pr <- predict(mylogit, ds, type="response")
 sa <- sapply(as.numeric(ds$X..50K), minus1)
 err <- mean(abs(pr-sa))
 
 # Aqui fem el mateix, pero establim que si la prediccio es <0.5, la interpreten com un 0, i 1 d'altre manera.
-# En les nostres proves l'error es de 0.1632653, es adir, que el model encerta un 83% dels cops.
+# err2 = 0.1749079
 pr2 <- sapply(pr, tobin)
 err2 <- mean(abs(pr2-sa))
 
@@ -69,13 +69,13 @@ mylogit <- glm (ds$X..50K
                 , data=ds, family="binomial")
 
 # A continuacio fem una prediccio i mesurem l'error.
-# En les nostres proves l'error es de 0.254356, lleugerament diferent de err1.
+# err3 = 0.2431116
 pr3 <- predict(mylogit, ds, type="response")
 sa3 <- sapply(as.numeric(ds$X..50K), minus1)
 err3 <- mean(abs(pr3-sa3))
 
 # Aqui fem el mateix, pero establim que si la prediccio es <0.5, la interpreten com un 0, i 1 d'altre manera.
-# En les nostres proves l'error es de 0.1632653, exactament el mateix que err2.
+# err4 = 0.1753993
 pr4 <- sapply(pr3, tobin)
 err4 <- mean(abs(pr4-sa3))
 
@@ -86,9 +86,9 @@ require (boot)
 # err_loocv <- cv.glm(ds, mylogit)
 
 # Error amb k-fold CV.
-N <- 6
-err_kcv <- rep(0,N)
-for (i in 2:N)
-{
-  err_kcv[i-1] <- cv.glm(ds, mylogit, K=i)
-}
+#N <- 6
+#err_kcv <- rep(0,N)
+#for (i in 2:N)
+#{
+#err_kcv[i-1] <- cv.glm(ds, mylogit, K=i)
+#}
